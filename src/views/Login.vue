@@ -1,18 +1,17 @@
 <template>
-  <div class="home">
-    <h1 class="home-title">Login</h1>
+  <v-container text-center>
+    <h1 class="register__title text-center">Login</h1>
     <v-form @submit.prevent="handleSubmit" v-model="valid" class="home-section">
-      <v-text-field required type="email" :rules="emailRules" v-model="email" label="E-mail"></v-text-field>
-      <v-text-field
-        required
-        type="password"
-        :rules="passwordRules"
-        v-model="password"
-        label="Password"
-      ></v-text-field>
-      <v-btn color="success" :disabled="!valid" type="submit">Logar</v-btn>
+      <v-flex xs12 offset-md4 md4>
+        <v-text-field required type="email" :rules="emailRules" v-model="email" label="E-mail" />
+        <v-text-field required type="password" :rules="passwordRules" v-model="password" label="Password" />
+        <v-btn color="success" :disabled="!valid" block type="submit">Logar</v-btn>
+        <p class="register__text">
+          Ainda não é cadastrado? <router-link to="/register" class="register__text-link">Crie sua conta.</router-link>
+        </p>
+      </v-flex>
     </v-form>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -39,20 +38,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.register__title {
+  margin: 5rem 0 2rem;
+}
 
-  &-title {
-    margin: 200px 0 0;
-  }
+.register__text {
+  font-size: 12px;
+  text-align: right;
+  margin-top: .5rem;
 
-  &-section {
-    width: 350px;
-    display: flex;
-    flex-direction: column;
+  &-link {
+    text-decoration: none;
   }
 }
 </style>
