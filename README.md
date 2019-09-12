@@ -1,7 +1,7 @@
 ## Primeiro faça o clone do repositório
 
 ```
-    git clone https://github.com/codenation-dev/squad-1-ad-java-e-vue-online-ca.git
+    git clone https://github.com/codenation-dev/squad-1-ad-java-e-vue-online-ca-front.git
 ```
 
 ## Instale as dependências
