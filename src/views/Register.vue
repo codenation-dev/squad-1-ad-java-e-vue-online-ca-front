@@ -6,20 +6,31 @@
         <v-text-field required v-model="name" :rules="nameRules" label="Nome" />
         <v-text-field required v-model="email" :rules="emailRules" label="E-mail" />
         <v-text-field required v-model="password" :rules="passwordRules" label="Senha" type="password" />
-        <v-btn color="success" :disabled="!isValid" block type="submit">Cadastrar</v-btn>
+        <v-btn color="success" :loading="loading" :disabled="!isValid" block type="submit">Cadastrar</v-btn>
         <p class="login__text">
           Já possui uma conta? <router-link to="/" class="login__text-link">Faça o seu login.</router-link>
         </p>
       </v-flex>
+      <toastr v-model="responseMessage" :color="error ? 'error' : 'success'">
+        {{ responseMessage }}
+      </toastr>
     </v-form>
   </v-container>
 </template>
 
 <script>
+import { register as registerUser } from '@/services/users';
+
+import Toastr from '@/components/Toastr';
+
 export default {
   name: 'register',
+  components: { Toastr },
   data: () => ({
     isValid: true,
+    loading: false,
+    responseMessage: false,
+    error: false,
     name: '',
     email: '',
     password: '',
@@ -39,8 +50,22 @@ export default {
     ]
   }),
   methods: {
-    handleSubmit() {
-      alert('Chama a rota para criar registrar o usuário');
+    async handleSubmit() {
+      const { name, email, password } = this;
+
+      this.error = false;
+      this.loading = true;
+
+      try {
+        await registerUser({ name, email, password });
+
+        this.responseMessage = "Cadastro efetuado com sucesso!";
+      } catch (err) {
+        this.error = true;
+        this.responseMessage = 'Não foi possível efetuar o cadastro.'
+      } finally {
+        this.loading = false;
+      }
     },
   },
 };
@@ -48,7 +73,7 @@ export default {
 
 <style lang="scss" scoped>
 .register__title {
-  margin: 5rem 0 2rem;
+  margin: 3rem 0 2rem;
 }
 
 .login__text {

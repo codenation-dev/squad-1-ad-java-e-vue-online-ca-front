@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss" scoped>
 .register__title {
-  margin: 5rem 0 2rem;
+  margin: 3rem 0 2rem;
 }
 
 .register__text {
