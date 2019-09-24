@@ -10,6 +10,8 @@ Vue.use(Toasted, {
   duration: 5000,
   keepOnHover: true,
   closeOnSwipe: true,
+  iconPack : 'material',
+  icon: 'done',
 });
 
 new Vue({

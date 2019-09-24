@@ -46,7 +46,7 @@ export default {
 
         this.$toasted.success('Login realizado com sucesso!')
       } catch (err) {
-        this.$toasted.error('Não foi possível realizar o login');
+        this.$toasted.error('Não foi possível realizar o login', { icon: 'error_outline' });
       } finally {
         this.loading = false;
       }
