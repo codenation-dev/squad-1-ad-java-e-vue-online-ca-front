@@ -11,9 +11,6 @@
           Já possui uma conta? <router-link to="/" class="login__text-link">Faça o seu login.</router-link>
         </p>
       </v-flex>
-      <toastr v-model="responseMessage" :color="error ? 'error' : 'success'">
-        {{ responseMessage }}
-      </toastr>
     </v-form>
   </v-container>
 </template>
@@ -21,11 +18,8 @@
 <script>
 import { register as registerUser } from '@/services/users';
 
-import Toastr from '@/components/Toastr';
-
 export default {
   name: 'register',
-  components: { Toastr },
   data: () => ({
     isValid: true,
     loading: false,
@@ -59,10 +53,9 @@ export default {
       try {
         await registerUser({ name, email, password });
 
-        this.responseMessage = "Cadastro efetuado com sucesso!";
+        this.$toasted.success('Cadastro efetuado com sucesso!')
       } catch (err) {
-        this.error = true;
-        this.responseMessage = 'Não foi possível efetuar o cadastro.'
+        this.$toasted.error('Não foi possível efetuar o cadastro. :(');
       } finally {
         this.loading = false;
       }
