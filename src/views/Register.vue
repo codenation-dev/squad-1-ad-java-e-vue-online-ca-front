@@ -40,7 +40,7 @@ export default {
     passwordRules: [
       v => !!v || 'A senha é obrigatória',
       v => (v && v.length >= 6) || 'A senha deve ter no mínimo 6 caracteres',
-      v => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(v) || 'A senha deve conter pelo menos 1 letra maiúscula, 1 letra e 1 número',
+      v => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(v) || 'A senha deve conter letras e números',
     ]
   }),
   methods: {
