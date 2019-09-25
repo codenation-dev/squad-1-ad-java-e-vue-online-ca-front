@@ -22,13 +22,13 @@ export default new Router({
     {
       path: '/timeline',
       name: 'timeline',
-      component: () =>
-        import(/* webpackChunkName: "timeline" */ './views/Timeline.vue'),
+      component: () => import(/* webpackChunkName: "timeline" */ './views/Timeline.vue'),
       beforeEnter(to, from, next) {
         if (localStorage.getItem('token')) {
           next();
         }
 
+        console.log('Você não possui permissão para acessar o sistema.');
         next('/');
       },
     },

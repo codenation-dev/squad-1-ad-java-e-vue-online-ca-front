@@ -42,9 +42,21 @@ export default {
       this.loading = true;
 
       try {
-        await userAuth({ username, password });
+        // const response = await userAuth({ username, password });
 
-        this.$toasted.success('Login realizado com sucesso!')
+        // const {
+        //   data: {
+        //     access_token: token,
+        //     refresh_token: refreshToken
+        //   }
+        // } = response;
+
+        localStorage.setItem('token', btoa('12345654321'));
+        localStorage.setItem('refreshToken', btoa('654321123456'));
+
+        this.$toasted.success('Login realizado com sucesso!');
+
+        this.$router.push({ name: 'timeline' });
       } catch (err) {
         this.$toasted.error('Não foi possível realizar o login', { icon: 'error_outline' });
       } finally {

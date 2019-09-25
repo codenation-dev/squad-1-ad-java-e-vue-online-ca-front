@@ -55,7 +55,7 @@ export default {
 
         this.$toasted.success('Cadastro efetuado com sucesso!')
       } catch (err) {
-        this.$toasted.error('Não foi possível efetuar o cadastro. :(');
+        this.$toasted.error('Não foi possível efetuar o cadastro. :(', { icon: 'error_outline' });
       } finally {
         this.loading = false;
       }
