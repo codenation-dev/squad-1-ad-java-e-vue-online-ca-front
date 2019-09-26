@@ -42,14 +42,14 @@ export default {
       this.loading = true;
 
       try {
-        // const response = await userAuth({ username, password });
+        const response = await userAuth({ username, password });
 
-        // const {
-        //   data: {
-        //     access_token: token,
-        //     refresh_token: refreshToken
-        //   }
-        // } = response;
+        const {
+          data: {
+            access_token: token,
+            refresh_token: refreshToken
+          }
+        } = response;
 
         localStorage.setItem('token', btoa('12345654321'));
         localStorage.setItem('refreshToken', btoa('654321123456'));

@@ -7,7 +7,7 @@ import Toasted from 'vue-toasted';
 Vue.config.productionTip = false;
 
 Vue.use(Toasted, {
-  duration: 5000,
+  duration: 4000,
   keepOnHover: true,
   closeOnSwipe: true,
   iconPack : 'material',
