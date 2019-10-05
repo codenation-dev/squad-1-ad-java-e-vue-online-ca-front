@@ -17,9 +17,15 @@
           v-model="password"
           label="Password"
         />
-        <v-btn color="success" :disabled="!valid" block type="submit"
-          >Logar</v-btn
+        <v-btn
+          color="success"
+          :disabled="!valid"
+          block
+          type="submit"
+          :loading="loading"
         >
+          Logar
+        </v-btn>
         <p class="register__text">
           Ainda não é cadastrado?
           <router-link to="/register" class="register__text-link"
@@ -37,24 +43,22 @@ import { mapActions } from 'vuex';
 
 export default {
   name: 'home',
-  data() {
-    return {
-      username: '',
-      usernameRules: [
-        v => !!v || 'O usuário é obrigatório!',
-        v => /.+@.+\..+/.test(v) || 'O usuário deve ser um e-mail válido',
-      ],
-      password: '',
-      passwordRules: [v => !!v || 'A senha é obrigatória'],
-      valid: true,
-    };
-  },
+  data: () => ({
+    loading: false,
+    username: '',
+    usernameRules: [
+      v => !!v || 'O usuário é obrigatório!',
+      v => /.+@.+\..+/.test(v) || 'O usuário deve ser um e-mail válido',
+    ],
+    password: '',
+    passwordRules: [v => !!v || 'A senha é obrigatória'],
+    valid: true,
+  }),
   methods: {
     ...mapActions('user', ['updateUser']),
     async handleSubmit() {
       const { username, password } = this;
 
-      this.error = false;
       this.loading = true;
 
       try {
