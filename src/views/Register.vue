@@ -4,11 +4,32 @@
     <v-form v-model="isValid" @submit.prevent="handleSubmit">
       <v-flex xs12 offset-md4 md4>
         <v-text-field required v-model="name" :rules="nameRules" label="Nome" />
-        <v-text-field required v-model="email" :rules="emailRules" label="E-mail" />
-        <v-text-field required v-model="password" :rules="passwordRules" label="Senha" type="password" />
-        <v-btn color="success" :loading="loading" :disabled="!isValid" block type="submit">Cadastrar</v-btn>
+        <v-text-field
+          required
+          v-model="email"
+          :rules="emailRules"
+          label="E-mail"
+        />
+        <v-text-field
+          required
+          v-model="password"
+          :rules="passwordRules"
+          label="Senha"
+          type="password"
+        />
+        <v-btn
+          color="success"
+          :loading="loading"
+          :disabled="!isValid"
+          block
+          type="submit"
+          >Cadastrar</v-btn
+        >
         <p class="login__text">
-          Já possui uma conta? <router-link to="/" class="login__text-link">Faça o seu login.</router-link>
+          Já possui uma conta?
+          <router-link to="/" class="login__text-link"
+            >Faça o seu login.</router-link
+          >
         </p>
       </v-flex>
     </v-form>
@@ -40,8 +61,10 @@ export default {
     passwordRules: [
       v => !!v || 'A senha é obrigatória',
       v => (v && v.length >= 6) || 'A senha deve ter no mínimo 6 caracteres',
-      v => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(v) || 'A senha deve conter letras e números',
-    ]
+      v =>
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(v) ||
+        'A senha deve conter letras e números',
+    ],
   }),
   methods: {
     async handleSubmit() {
@@ -53,11 +76,13 @@ export default {
       try {
         await registerUser({ name, email, password });
 
-        this.$toasted.success('Cadastro efetuado com sucesso!')
+        this.$toasted.success('Cadastro efetuado com sucesso!');
 
         this.$router.push({ name: 'login' });
       } catch (err) {
-        this.$toasted.error('Não foi possível efetuar o cadastro. :(', { icon: 'error_outline' });
+        this.$toasted.error('Não foi possível efetuar o cadastro. :(', {
+          icon: 'error_outline',
+        });
       } finally {
         this.loading = false;
       }
@@ -74,7 +99,7 @@ export default {
 .login__text {
   font-size: 12px;
   text-align: right;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 
   &-link {
     text-decoration: none;

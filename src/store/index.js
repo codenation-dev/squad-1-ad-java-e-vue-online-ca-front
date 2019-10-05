@@ -5,11 +5,11 @@ import user from './modules/user';
 
 Vue.use(Vuex);
 
-const debug = process.env.NODE_ENV !== 'production'
+const debug = process.env.NODE_ENV !== 'production';
 
 export default new Vuex.Store({
   modules: {
-    user
+    user,
   },
   strict: debug,
-})
+});

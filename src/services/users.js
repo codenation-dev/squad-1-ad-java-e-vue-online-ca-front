@@ -7,4 +7,5 @@ import Http from './http';
  * @param {String} user.email
  * @param {String} user.password
  */
-export const register = ({ name, email, password }) => Http.post('/register', { name, email, password });
+export const register = ({ name, email, password }) =>
+  Http.post('/register', { name, email, password });

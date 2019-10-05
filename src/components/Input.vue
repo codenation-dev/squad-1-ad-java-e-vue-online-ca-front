@@ -10,15 +10,15 @@
 
 <script>
 export default {
-  name: "Input",
+  name: 'Input',
   props: {
     placeholder: {
       type: String,
-      required: true
+      required: true,
     },
     type: String,
-    value: String
-  }
+    value: String,
+  },
 };
 </script>
 

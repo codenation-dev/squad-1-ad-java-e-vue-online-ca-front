@@ -11,7 +11,7 @@ Vue.use(Toasted, {
   duration: 4000,
   keepOnHover: true,
   closeOnSwipe: true,
-  iconPack : 'material',
+  iconPack: 'material',
   icon: 'done',
 });
 
@@ -19,5 +19,5 @@ new Vue({
   router,
   vuetify,
   render: h => h(App),
-  store
+  store,
 }).$mount('#app');

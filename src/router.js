@@ -16,12 +16,14 @@ export default new Router({
     {
       path: '/register',
       name: 'register',
-      component: () => import(/* webpackChunkName: "register" */ './views/Register.vue'),
+      component: () =>
+        import(/* webpackChunkName: "register" */ './views/Register.vue'),
     },
     {
       path: '/timeline',
       name: 'timeline',
-      component: () => import(/* webpackChunkName: "timeline" */ './views/Timeline.vue'),
+      component: () =>
+        import(/* webpackChunkName: "timeline" */ './views/Timeline.vue'),
       // beforeEnter(to, from, next) {
       //   if (localStorage.getItem('token')) {
       //     next();

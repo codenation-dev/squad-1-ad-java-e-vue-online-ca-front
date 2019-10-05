@@ -13,12 +13,10 @@ export const oauth = ({ username, password }) => {
   formData.append('password', password);
   formData.append('grant_type', 'password');
 
-  return Http.post(
-    '/oauth/token',
-    formData,
-    { headers: {
+  return Http.post('/oauth/token', formData, {
+    headers: {
       'Content-Type': 'multipart/form-data',
-      Authorization: `Basic Y29kZW5hdGlvbjpjb2RlbmF0aW9uMTIz`
-    }}
-  );
-}
+      Authorization: `Basic Y29kZW5hdGlvbjpjb2RlbmF0aW9uMTIz`,
+    },
+  });
+};
