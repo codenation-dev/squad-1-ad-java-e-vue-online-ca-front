@@ -54,6 +54,8 @@ export default {
         await registerUser({ name, email, password });
 
         this.$toasted.success('Cadastro efetuado com sucesso!')
+
+        this.$router.push({ name: 'login' });
       } catch (err) {
         this.$toasted.error('Não foi possível efetuar o cadastro. :(', { icon: 'error_outline' });
       } finally {

@@ -16,6 +16,7 @@
 
 <script>
 import { oauth as userAuth } from '@/services/auth';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'home',
@@ -32,6 +33,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions('user', ['updateUser']),
     async handleSubmit() {
       const {
         username,
@@ -51,8 +53,10 @@ export default {
           }
         } = response;
 
-        localStorage.setItem('token', btoa('12345654321'));
-        localStorage.setItem('refreshToken', btoa('654321123456'));
+        localStorage.setItem('token', token);
+        localStorage.setItem('refreshToken', refreshToken);
+
+        this.updateUser({ email: username });
 
         this.$toasted.success('Login realizado com sucesso!');
 
