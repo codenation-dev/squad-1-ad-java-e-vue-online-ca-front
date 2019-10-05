@@ -68,10 +68,10 @@ export default {
           data: { access_token: token, refresh_token: refreshToken },
         } = response;
 
+        this.updateUser({ email: username });
+
         localStorage.setItem('token', token);
         localStorage.setItem('refreshToken', refreshToken);
-
-        this.updateUser({ email: username });
 
         this.$toasted.success('Login realizado com sucesso!');
 

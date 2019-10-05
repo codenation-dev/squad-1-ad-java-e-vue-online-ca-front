@@ -82,10 +82,17 @@ export default {
     ...mapState('user', ['user']),
   },
   mounted() {
+    this.checkAuth();
     this.handleGetAllLogs();
     this.$emit('toggleLogout');
   },
   methods: {
+    checkAuth() {
+      if (!localStorage.getItem('token')) {
+        this.$router.replace({ name: 'login' });
+        return;
+      }
+    },
     async handleGetAllLogs() {
       try {
         const response = await getAllLogs();

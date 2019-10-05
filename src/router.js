@@ -9,6 +9,10 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '*',
+      redirect: '/',
+    },
+    {
       path: '/',
       name: 'login',
       component: Login,
@@ -24,14 +28,14 @@ export default new Router({
       name: 'timeline',
       component: () =>
         import(/* webpackChunkName: "timeline" */ './views/Timeline.vue'),
-      // beforeEnter(to, from, next) {
-      //   if (localStorage.getItem('token')) {
-      //     next();
-      //   }
+      beforeEnter(to, from, next) {
+        if (localStorage.getItem('token')) {
+          next();
+          return;
+        }
 
-      //   alert('Você não possui permissão para acessar o sistema.');
-      //   next('/');
-      // },
+        next('/');
+      },
     },
   ],
 });

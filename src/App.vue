@@ -38,11 +38,11 @@ export default {
       this.hasLogin = !hasLogin;
     },
     handleLogout() {
-      localStorage.setItem('token', null);
-      localStorage.setItem('refreshToken', null);
+      localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
 
       this.toggleLogout();
-      this.$router.push({ name: 'login' });
+      this.$router.replace({ name: 'login' });
     },
   },
 };
