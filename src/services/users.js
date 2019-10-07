@@ -8,4 +8,4 @@ import Http from './http';
  * @param {String} user.password
  */
 export const register = ({ name, email, password }) =>
-  Http.post('/register', { name, email, password });
+  Http.post('/users/register', { name, email, password });

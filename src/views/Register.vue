@@ -80,7 +80,12 @@ export default {
 
         this.$router.push({ name: 'login' });
       } catch (err) {
-        this.$toasted.error('Não foi possível efetuar o cadastro. :(', {
+        let msg = 'Não foi possível efetuar o cadastro';
+
+        if (err.response && err.response.status == 409) {
+          msg = `${msg}.<br>O usuário informado já existe.`;
+        }
+        this.$toasted.error(msg, {
           icon: 'error_outline',
         });
       } finally {

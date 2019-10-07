@@ -25,7 +25,10 @@
       <v-btn class="timeline-actions" @click="this.delete">Apagar</v-btn>
     </div>
     <v-container>
-      <v-simple-table fixed-header height="400px">
+      <div class="text-center" v-if="loading">
+        <v-progress-circular indeterminate color="primary" />
+      </div>
+      <v-simple-table fixed-header height="400px" v-else >
         <template v-slot:default>
           <thead>
             <tr>
@@ -73,6 +76,7 @@ import { getAllLogs } from '@/services/errorLogs';
 export default {
   name: 'Timeline',
   data: () => ({
+    loading: false,
     environment: ['Produção', 'Homologação', 'Dev'],
     orderBy: ['Level', 'Frequência'],
     searchBy: ['Level', 'Descrição', 'Origem'],
@@ -94,6 +98,8 @@ export default {
       }
     },
     async handleGetAllLogs() {
+      this.loading = true;
+
       try {
         const response = await getAllLogs();
 
@@ -104,6 +110,8 @@ export default {
         this.$toasted.error('Não foi possível obter os logs de erro', {
           icon: 'error_outline',
         });
+      } finally {
+        this.loading = false;
       }
     },
     save: () => {
