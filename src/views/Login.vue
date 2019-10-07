@@ -77,7 +77,7 @@ export default {
 
         this.$router.push({ name: 'timeline' });
       } catch (err) {
-        this.$toasted.error('Não foi possível realizar o login', {
+        this.$toasted.error('E-mail ou senha inválidos.', {
           icon: 'error_outline',
         });
       } finally {

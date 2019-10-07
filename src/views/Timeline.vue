@@ -32,6 +32,9 @@
         <template v-slot:default>
           <thead>
             <tr>
+              <th class="text-center">
+                <input type="checkbox" id="selectAll" @change="handleChangeSelectAll" v-model="selectAll" :checked="logs.length === selectedLogs.length">
+              </th>
               <th class="text-left">Level</th>
               <th class="text-center">Log</th>
               <th class="text-center">Origem</th>
@@ -39,7 +42,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(log, index) in logs" :key="index" class="item">
+            <tr v-for="log in logs" :key="log.id" class="item">
+              <td class="text-center">
+                <input
+                  type="checkbox"
+                  :checked="selectAll"
+                  @change="handleChangeSelected(log.id)"
+                />
+              </td>
               <td>
                 <v-chip
                   :color="
@@ -77,10 +87,12 @@ export default {
   name: 'Timeline',
   data: () => ({
     loading: false,
+    selectAll: false,
     environment: ['Produção', 'Homologação', 'Dev'],
     orderBy: ['Level', 'Frequência'],
     searchBy: ['Level', 'Descrição', 'Origem'],
     logs: [],
+    selectedLogs: [],
   }),
   computed: {
     ...mapState('user', ['user']),
@@ -113,6 +125,34 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+    handleChangeSelected(id) {
+      const { selectedLogs } = this;
+
+      if (selectedLogs.includes(id)) {
+        console.log('remover item ', id);
+        const index = selectedLogs.indexOf(id);
+        this.selectedLogs.splice(index, 0);
+
+        return;
+      }
+
+      console.log('adicionar item ', id);
+      this.selectedLogs.push(id);
+    },
+    handleChangeSelectAll() {
+      const { selectAll, selectedLogs, logs } = this;
+
+      if (selectAll) {
+        logs.map(log => {
+          if (!selectedLogs.includes(log.id)) {
+            this.selectedLogs.push(log.id);
+          }
+        });
+        return;
+      }
+
+      this.selectedLogs = [];
     },
     save: () => {
       console.log('salvando');
@@ -148,6 +188,9 @@ export default {
   }
 
   &-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     width: 100%;
     padding: 12px 130px;
     background-color: #e6e6e6;
