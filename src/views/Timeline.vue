@@ -32,10 +32,16 @@
         <template v-slot:default>
           <thead>
             <tr>
-              <th class="text-center">
-                <input type="checkbox" id="selectAll" @change="handleChangeSelectAll" v-model="selectAll" :checked="logs.length === selectedLogs.length">
+              <th class="text-center" width="5%">
+                <input
+                  type="checkbox"
+                  id="selectAll"
+                  @change="handleChangeSelectAll"
+                  v-model="selectAll"
+                  :checked="logs.length === selectedLogs.length"
+                />
               </th>
-              <th class="text-left">Level</th>
+              <th class="text-left" width="10%">Level</th>
               <th class="text-center">Log</th>
               <th class="text-center">Origem</th>
               <th class="text-right">Eventos</th>
@@ -130,14 +136,12 @@ export default {
       const { selectedLogs } = this;
 
       if (selectedLogs.includes(id)) {
-        console.log('remover item ', id);
         const index = selectedLogs.indexOf(id);
         this.selectedLogs.splice(index, 0);
 
         return;
       }
 
-      console.log('adicionar item ', id);
       this.selectedLogs.push(id);
     },
     handleChangeSelectAll() {
